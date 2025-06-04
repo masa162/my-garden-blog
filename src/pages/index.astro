@@ -11,6 +11,8 @@ const posts = (await getCollection('blog')).sort(
 );
 // src/pages/index.astro
 import Header from '../components/Header.astro';
+import NavBar from '../components/NavBar.astro';
+import PostCard from '../components/PostCard.astro';
 ---
 
 <Layout title="Gardening Blog - トップページ">
@@ -34,3 +36,4 @@ import Header from '../components/Header.astro';
 	</ul>
 
 </Layout>
+
