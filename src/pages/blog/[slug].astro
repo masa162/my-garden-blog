@@ -1,0 +1,32 @@
+---
+import { getCollection, getEntryBySlug } from "astro:content";
+import Layout from '../../layouts/Layout.astro';
+
+// getStaticPaths: すべての記事slugを生成
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug }
+  }));
+}
+
+// パスパラメータからslugを取得
+const { slug } = Astro.params;
+const post = await getEntryBySlug('blog', slug);
+
+if (!post) {
+  throw new Error('記事が見つかりません');
+}
+---
+
+<Layout title={post.data.title}>
+  <article class="prose mx-auto py-8">
+    <h1 class="text-3xl font-bold mb-4">{post.data.title}</h1>
+    <img src={post.data.heroImage} alt="" class="rounded-lg mb-4" />
+    <p class="text-sm text-gray-500 mb-4">
+      公開日: <time datetime={post.data.pubDate.toISOString()}>{new Date(post.data.pubDate).toLocaleDateString('ja-JP')}</time>
+    </p>
+    <!-- ここでMarkdown本文を出力 -->
+    <div class="mt-6" set:html={post.body} />
+  </article>
+</Layout>
