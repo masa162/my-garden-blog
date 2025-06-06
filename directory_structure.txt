@@ -13867,13 +13867,18 @@
 │   │   ├── Sidebar.astro
 │   │   ├── Welcome.astro
 │   │   └── header.astro
+│   ├── content
+│   │   └── blog
+│   │       └── 250606_01.md
 │   ├── layouts
 │   │   └── Layout.astro
 │   ├── pages
+│   │   ├── blog
+│   │   │   └── [slug].astro
 │   │   └── index.astro
 │   └── styles
 │       └── global.css
 ├── tailwind.config.mjs
 └── tsconfig.json
 
-1510 directories, 12367 files
+1513 directories, 12369 files
